@@ -1,0 +1,92 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 6% 15%);
+
+  --surface-1: hsl(0 0% 100%);
+  --surface-2: hsl(240 5% 97%);
+  --surface-3: hsl(240 5% 94%);
+
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 6% 15%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 6% 15%);
+
+  --primary: hsl(350 60% 28%); /* granate/vino, tono base de marca */
+  --primary-foreground: hsl(0 0% 100%);
+
+  --secondary: hsl(240 5% 96%);
+  --secondary-foreground: hsl(240 6% 15%);
+
+  --muted: hsl(240 5% 96%);
+  --muted-foreground: hsl(240 4% 46%);
+
+  --accent: hsl(350 55% 95%); /* tinte suave del primario */
+  --accent-foreground: hsl(350 60% 28%);
+
+  --destructive: hsl(0 72% 51%);
+  --destructive-foreground: hsl(0 0% 100%);
+
+  --border: hsl(240 6% 90%);
+  --input: hsl(240 6% 90%);
+  --ring: hsl(350 60% 28%);
+
+  --radius: 0.75rem;
+
+  /* Sidebar */
+  --sidebar: hsl(0 0% 100%);
+  --sidebar-foreground: hsl(240 6% 20%);
+  --sidebar-border: hsl(240 6% 90%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Sombras custom (3 niveles) */
+  --shadow-sm: 0 1px 2px 0 hsl(240 6% 15% / 0.06);
+  --shadow-md: 0 4px 10px -2px hsl(240 6% 15% / 0.08), 0 2px 4px -2px hsl(240 6% 15% / 0.06);
+  --shadow-lg: 0 12px 28px -6px hsl(240 6% 15% / 0.12), 0 4px 10px -4px hsl(240 6% 15% / 0.08);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: var(--ring);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
