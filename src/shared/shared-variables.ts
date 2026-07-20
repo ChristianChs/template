@@ -1,0 +1,11 @@
+export const SHARED_VAR = {
+  LIST_STATUS_ALL: [
+    { VALUE: "-1", LABEL: "TODOS" },
+    { VALUE: "1", LABEL: "ACTIVO" },
+    { VALUE: "0", LABEL: "DESACTIVO" },
+  ],
+  LIST_DATA_ALL: { VALUE: "-1", LABEL: "TODOS" },
+  DEFAULT_PAGE_SIZE: 10,
+  PAGE_SIZE_OPTIONS: [10, 25, 50, 100],
+  SEARCH_DEBOUNCE_MS: 400,
+} as const;

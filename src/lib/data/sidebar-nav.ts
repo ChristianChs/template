@@ -13,7 +13,6 @@ export const sidebarNav: NavItem[] = [
     // con `items` -> se renderiza como Collapsible
     items: [
       { title: "Lista de clientes", href: "/dashboard/clientes", icon: "users" },
-      { title: "Nuevo cliente", href: "/dashboard/clientes/nuevo", icon: "user-plus" },
       { title: "Segmentos", href: "/dashboard/clientes/segmentos", icon: "tags" },
     ],
   },
