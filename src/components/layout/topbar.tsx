@@ -7,7 +7,6 @@ import {
   ChevronDown,
   ChevronRight,
   CircleUserRound,
-  LogOut,
   Maximize,
   Menu,
   PanelLeft,
@@ -24,9 +23,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import type { SessionUser } from "@/lib/types/auth.model"
 import { useSidebar } from "./sidebar-provider"
+import { LogoutButton } from "./logout-button"
 
-export function Topbar() {
+interface TopbarProps {
+  user: SessionUser | null
+}
+
+export function Topbar({ user }: TopbarProps) {
   const { collapsed, setCollapsed, setMobileOpen } = useSidebar()
 
   return (
@@ -55,7 +60,7 @@ export function Topbar() {
 
       <div className="ml-auto flex items-center gap-2">
         <FullscreenButton />
-        <UserBlock />
+        <UserBlock user={user} />
       </div>
     </header>
   )
@@ -123,7 +128,11 @@ function FullscreenButton() {
   )
 }
 
-function UserBlock() {
+function UserBlock({ user }: TopbarProps) {
+  const nombre = user?.nombre ?? "Usuario"
+  const rol = user?.rol ?? ""
+  const primerNombre = nombre.split(" ")[0]
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -141,10 +150,10 @@ function UserBlock() {
         </span>
         <span className="hidden min-w-0 text-left leading-tight sm:block">
           <span className="block truncate text-sm font-semibold text-foreground">
-            Jorge Vildoso
+            {nombre}
           </span>
           <span className="block truncate text-xs text-muted-foreground">
-            Administrador
+            {rol}
           </span>
         </span>
         <ChevronDown
@@ -156,7 +165,7 @@ function UserBlock() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-52">
         <DropdownMenuLabel className="font-normal text-muted-foreground">
-          ¡Bienvenido, Jorge!
+          ¡Bienvenido, {primerNombre}!
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
@@ -164,10 +173,7 @@ function UserBlock() {
           Perfil
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem variant="destructive">
-          <LogOut className="size-4" />
-          Cerrar sesión
-        </DropdownMenuItem>
+        <LogoutButton />
       </DropdownMenuContent>
     </DropdownMenu>
   )

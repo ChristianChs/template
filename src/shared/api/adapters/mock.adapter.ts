@@ -4,6 +4,7 @@ import { ApiError } from "../api-error";
 import type { ApiResponse } from "@/lib/types/api.model";
 import type { PaginatedRequest } from "@/lib/types/table.model";
 import type { OptionItem } from "@/lib/types/select.model";
+import type { LoginPayload, LoginResponse } from "@/lib/types/auth.model";
 
 interface MockCliente {
   Id: number;
@@ -148,11 +149,25 @@ export function createMockClient(): HttpClient {
     return ok({ Id: id }, message);
   }
 
+  function login(credentials: LoginPayload) {
+    const { usuario, password } = credentials ?? {};
+    if (usuario !== "admin" || password !== "admin123") {
+      fail(401, "Usuario o contraseña incorrectos");
+    }
+    const response: LoginResponse = {
+      token: `mock-token-${Date.now()}`,
+      user: { nombre: "Jorge Vildoso", rol: "Administrador" },
+    };
+    return ok(response, "Bienvenido");
+  }
+
   async function post<T>(path: string, body: unknown): Promise<T> {
     await delay(400); // latencia simulada
     const payload = body as Record<string, never>;
 
     switch (path) {
+      case "/auth/login":
+        return login(body as LoginPayload) as T;
       case "/clientes/list":
         return paginate(db, body as PaginatedRequest) as T;
       case "/clientes/save":
